@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import { ref } from "vue";
-
+import AppSelect from "./AppSelect.vue";
 defineProps<{ msg: string }>();
 
-const count = ref(0);
+const formState = ref({
+	value: undefined,
+	value2: undefined
+});
 </script>
 
 <template>
 	<a-button type="primary">Primary Button</a-button>
-
+	<a-form :model="formState">
+		<a-form-item label="选项1" name="value">
+			<app-select v-model:value="formState.value" />
+		</a-form-item>
+		<a-form-item label="选项2" name="value2">
+			<app-select v-model:value="formState.value2" />
+		</a-form-item>
+	</a-form>
+	{{ formState.value }}
 </template>
 
 <style scoped>
